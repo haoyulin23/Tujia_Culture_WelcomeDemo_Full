@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo13eu0s5qhx5"]
+
+[ext_resource type="Script" uid="uid://s4jjvkf5sp4x" path="res://scripts/Location_Fenghuang.gd" id="1_lq5t5"]
+[ext_resource type="Texture2D" uid="uid://dfu6kuveldhhn" path="res://assets/interactive_background.png" id="2_kpsc8"]
+[ext_resource type="Texture2D" uid="uid://dn08ea1ey28ex" path="res://assets/Fenghuang_culture.png" id="3_edhbp"]
+
+[node name="Location_Fenghuang" type="Node2D"]
+script = ExtResource("1_lq5t5")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(639, 365)
+scale = Vector2(0.832682, 0.706055)
+texture = ExtResource("2_kpsc8")
+
+[node name="TitleLabel" type="Label" parent="."]
+offset_left = 381.0
+offset_top = 29.0
+offset_right = 946.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 48
+text = "Fenghuang Tujia Culture"
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="."]
+offset_left = 116.0
+offset_top = 220.0
+offset_right = 744.0
+offset_bottom = 510.0
+theme_override_font_sizes/normal_font_size = 32
+text = "Welcome to Fenghuang Ancient Town  
+Explore the Miao and Tujia heritage through river-based culture, stilt houses, and handcrafted silver jewelry."
+
+[node name="Image" type="Sprite2D" parent="."]
+position = Vector2(1010.75, 360.75)
+scale = Vector2(0.42334, 0.271159)
+texture = ExtResource("3_edhbp")
+
+[node name="ContinueButton" type="Button" parent="."]
+offset_left = 981.0
+offset_top = 642.0
+offset_right = 1092.0
+offset_bottom = 687.0
+text = "Continue"
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 203.0
+offset_top = 637.0
+offset_right = 305.0
+offset_bottom = 684.0
+text = "Back"
+
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]

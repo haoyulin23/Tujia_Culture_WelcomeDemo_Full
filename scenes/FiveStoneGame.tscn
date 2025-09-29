@@ -1,0 +1,108 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvomog6k7o3hf"]
+
+[ext_resource type="Script" uid="uid://byi53mw68lj11" path="res://scripts/FiveStoneGame.gd" id="1_soxdq"]
+[ext_resource type="Texture2D" uid="uid://dfu6kuveldhhn" path="res://assets/interactive_background.png" id="2_ik3ab"]
+[ext_resource type="Texture2D" uid="uid://fxhm5mfwdtbw" path="res://assets/stone.png" id="3_olvs2"]
+[ext_resource type="Texture2D" uid="uid://lpuq7wsj0tgs" path="res://assets/CatchZone.png" id="4_ik3ab"]
+
+[node name="FiveStoneGame" type="Node2D"]
+script = ExtResource("1_soxdq")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_top = -2.0
+offset_right = 1285.0
+offset_bottom = 726.0
+texture = ExtResource("2_ik3ab")
+expand_mode = 1
+
+[node name="StoneContainer" type="Node2D" parent="."]
+
+[node name="Stone1" type="Sprite2D" parent="StoneContainer"]
+position = Vector2(463, 355)
+scale = Vector2(0.126953, 0.140137)
+texture = ExtResource("3_olvs2")
+
+[node name="Stone2" type="Sprite2D" parent="StoneContainer"]
+position = Vector2(571, 278)
+scale = Vector2(0.126953, 0.140137)
+texture = ExtResource("3_olvs2")
+
+[node name="Stone3" type="Sprite2D" parent="StoneContainer"]
+position = Vector2(704, 226)
+scale = Vector2(0.126953, 0.140137)
+texture = ExtResource("3_olvs2")
+
+[node name="Stone4" type="Sprite2D" parent="StoneContainer"]
+position = Vector2(851, 292)
+scale = Vector2(0.126953, 0.140137)
+texture = ExtResource("3_olvs2")
+
+[node name="Stone5" type="Sprite2D" parent="StoneContainer"]
+position = Vector2(922, 390)
+scale = Vector2(0.126953, 0.140137)
+texture = ExtResource("3_olvs2")
+
+[node name="CatchZone" type="Sprite2D" parent="StoneContainer"]
+position = Vector2(474, 484)
+scale = Vector2(0.195313, 0.09375)
+texture = ExtResource("4_ik3ab")
+
+[node name="Timer_Judge" type="Timer" parent="."]
+one_shot = true
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label_Instruction" type="Label" parent="UI"]
+layout_mode = 0
+offset_right = 159.0
+offset_bottom = 92.0
+
+[node name="Button_Next" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 542.0
+offset_right = 729.0
+offset_bottom = 592.0
+text = "Start"
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_left = 56.0
+offset_top = 221.0
+offset_right = 384.0
+offset_bottom = 440.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 175.0
+offset_right = 192.0
+offset_bottom = 204.0
+text = "Close"
+
+[node name="InfoButton" type="Button" parent="."]
+offset_left = 130.0
+offset_top = 540.0
+offset_right = 274.0
+offset_bottom = 591.0
+text = "Info"
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 1037.0
+offset_top = 543.0
+offset_right = 1143.0
+offset_bottom = 591.0
+text = "Back"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="InfoButton" to="." method="_on_in_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

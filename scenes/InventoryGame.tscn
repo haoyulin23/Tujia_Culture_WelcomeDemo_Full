@@ -1,0 +1,133 @@
+[gd_scene load_steps=13 format=3 uid="uid://bprb5yfm1e4by"]
+
+[ext_resource type="Texture2D" uid="uid://db25m1stxbcwi" path="res://assets/background_inventory.png" id="1_oxr3i"]
+[ext_resource type="Script" uid="uid://cdb6mlg8vpa1y" path="res://scripts/InventoryGame.gd" id="1_vt6ms"]
+[ext_resource type="Texture2D" uid="uid://b5bxtvr71jyg7" path="res://assets/inventory_panel.png" id="2_fhsv6"]
+[ext_resource type="Script" uid="uid://df8lng5ha1bqv" path="res://scripts/Inventory_panel.gd" id="3_vt6ms"]
+[ext_resource type="Script" uid="uid://bye6y18t1n1mj" path="res://scripts/item_drum.gd" id="4_fhsv6"]
+[ext_resource type="Script" uid="uid://dhcr5vv6rvhls" path="res://scripts/item_flute.gd" id="4_k5hp5"]
+[ext_resource type="Texture2D" uid="uid://u4ld6y4u423t" path="res://assets/item_drum.png" id="5_lmqpl"]
+[ext_resource type="Texture2D" uid="uid://dwnk47nu3cw3d" path="res://assets/target_area.png" id="6_3jqlq"]
+[ext_resource type="Texture2D" uid="uid://dgbc23j5pfqf" path="res://assets/item_flute.png" id="7_ad5bh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwxln"]
+size = Vector2(128.5, 118.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdrtg"]
+size = Vector2(214, 97.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0w1oo"]
+size = Vector2(158, 55.5)
+
+[node name="InventoryGame" type="Node2D"]
+script = ExtResource("1_vt6ms")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(644.875, 355.437)
+scale = Vector2(0.832194, 0.704224)
+texture = ExtResource("1_oxr3i")
+
+[node name="InventoryPanel" type="TextureRect" parent="."]
+offset_left = 42.0
+offset_top = 437.0
+offset_right = 790.0
+offset_bottom = 811.0
+texture = ExtResource("2_fhsv6")
+expand_mode = 1
+script = ExtResource("3_vt6ms")
+
+[node name="Slot1" type="TextureRect" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 120.0
+offset_right = 291.0
+offset_bottom = 277.0
+expand_mode = 1
+
+[node name="Slot2" type="TextureRect" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 120.0
+offset_right = 451.0
+offset_bottom = 277.0
+expand_mode = 1
+
+[node name="Slot3" type="TextureRect" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 122.0
+offset_right = 608.0
+offset_bottom = 279.0
+expand_mode = 1
+
+[node name="Slot4" type="TextureRect" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 118.0
+offset_right = 766.0
+offset_bottom = 275.0
+expand_mode = 1
+
+[node name="Item_drum" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("4_fhsv6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Item_drum"]
+position = Vector2(334, 635)
+scale = Vector2(0.0953776, 0.105225)
+texture = ExtResource("5_lmqpl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item_drum"]
+position = Vector2(342, 631)
+shape = SubResource("RectangleShape2D_xwxln")
+
+[node name="TargetArea_flute" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="TargetArea_flute" type="CollisionShape2D" parent="TargetArea_flute"]
+position = Vector2(667, 439.375)
+shape = SubResource("RectangleShape2D_fdrtg")
+
+[node name="img_TargetArea" type="Sprite2D" parent="TargetArea_flute"]
+position = Vector2(668, 357)
+scale = Vector2(0.367839, 0.421875)
+texture = ExtResource("6_3jqlq")
+
+[node name="Item_flute" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("4_k5hp5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Item_flute"]
+position = Vector2(177, 639)
+rotation = 0.322886
+scale = Vector2(0.103709, 0.100616)
+texture = ExtResource("7_ad5bh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item_flute"]
+position = Vector2(175, 634)
+shape = SubResource("RectangleShape2D_0w1oo")
+
+[node name="ConfirmButton" type="Button" parent="."]
+offset_left = 1089.0
+offset_top = 612.0
+offset_right = 1160.0
+offset_bottom = 660.0
+text = "Confirm"
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 879.0
+offset_top = 611.0
+offset_right = 949.0
+offset_bottom = 656.0
+text = "Back
+"
+
+[node name="TargetArea_drum" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="TargetArea_drum" type="CollisionShape2D" parent="TargetArea_drum"]
+position = Vector2(981, 446)
+shape = SubResource("RectangleShape2D_fdrtg")
+
+[connection signal="pressed" from="ConfirmButton" to="." method="_on_ConfirmButton_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

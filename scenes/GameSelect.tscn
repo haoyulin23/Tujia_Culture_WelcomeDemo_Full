@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://5sk8mltk8b3p"]
+
+[ext_resource type="Script" uid="uid://cjtd6irwodcsb" path="res://scripts/GameSelect.gd" id="1_13753"]
+[ext_resource type="Texture2D" uid="uid://dfu6kuveldhhn" path="res://assets/interactive_background.png" id="2_o4v2u"]
+
+[node name="GameSelect" type="Node2D"]
+script = ExtResource("1_13753")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1289.0
+offset_bottom = 726.0
+texture = ExtResource("2_o4v2u")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 501.0
+offset_top = 289.0
+offset_right = 814.0
+offset_bottom = 557.0
+
+[node name="KickJianziButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Kickjianzi"
+
+[node name="QuizGameButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "QuizGame"
+
+[node name="FiveStoneGameButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "FiveStoneGame"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 57.0
+offset_top = 548.0
+offset_right = 174.0
+offset_bottom = 598.0
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/KickJianziButton" to="." method="_on_KickJianzi_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuizGameButton" to="." method="_on_QuizGame_pressed"]
+[connection signal="pressed" from="VBoxContainer/FiveStoneGameButton" to="." method="_on_FiveStone_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_BackButton_pressed"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqe65p2ag43n4"]
+
+[ext_resource type="Texture2D" uid="uid://u4ld6y4u423t" path="res://assets/item_drum.png" id="1_wphw2"]
+
+[node name="ItemDrum" type="Node2D"]
+
+[node name="Sprite2D" type="TextureRect" parent="."]
+offset_left = 635.25
+offset_top = 257.25
+offset_right = 635.25
+offset_bottom = 257.25
+scale = Vector2(0.217773, 0.241699)
+texture = ExtResource("1_wphw2")

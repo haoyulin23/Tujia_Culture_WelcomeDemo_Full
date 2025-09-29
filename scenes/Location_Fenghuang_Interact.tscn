@@ -1,0 +1,113 @@
+[gd_scene load_steps=12 format=3 uid="uid://cf6q0wjijav0i"]
+
+[ext_resource type="Script" uid="uid://biq5x8l7p6668" path="res://scripts/LocationFHI.gd" id="1_07cll"]
+[ext_resource type="Texture2D" uid="uid://db25m1stxbcwi" path="res://assets/background_inventory.png" id="1_7dkpc"]
+[ext_resource type="Script" uid="uid://cext5up2464s2" path="res://scripts/DrumPickup.gd" id="2_kqhkt"]
+[ext_resource type="Texture2D" uid="uid://u4ld6y4u423t" path="res://assets/item_drum.png" id="3_xs6gj"]
+[ext_resource type="Texture2D" uid="uid://dgbc23j5pfqf" path="res://assets/item_flute.png" id="4_kqhkt"]
+[ext_resource type="Script" uid="uid://b5au1ohpt0ida" path="res://scripts/FlutePickup.gd" id="4_nt6mb"]
+[ext_resource type="Texture2D" uid="uid://b5bxtvr71jyg7" path="res://assets/inventory_panel.png" id="6_07cll"]
+[ext_resource type="Script" uid="uid://df8lng5ha1bqv" path="res://scripts/Inventory_panel.gd" id="7_1xpvn"]
+[ext_resource type="Texture2D" uid="uid://lwdgk2mkajme" path="res://assets/inventory_slot.png" id="8_nt6mb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqhkt"]
+size = Vector2(146, 139)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nt6mb"]
+size = Vector2(227.5, 102.5)
+
+[node name="LocationFenghuangInteract" type="Node2D"]
+script = ExtResource("1_07cll")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(636, 364)
+scale = Vector2(0.827799, 0.710938)
+texture = ExtResource("1_7dkpc")
+
+[node name="DrumPickup" type="Area2D" parent="."]
+script = ExtResource("2_kqhkt")
+
+[node name="Sprite2D" type="Sprite2D" parent="DrumPickup"]
+position = Vector2(923, 529)
+scale = Vector2(0.147786, 0.145508)
+texture = ExtResource("3_xs6gj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrumPickup"]
+position = Vector2(927, 525)
+shape = SubResource("RectangleShape2D_kqhkt")
+
+[node name="FlutePickup" type="Area2D" parent="."]
+script = ExtResource("4_nt6mb")
+
+[node name="Sprite2D" type="Sprite2D" parent="FlutePickup"]
+position = Vector2(683, 448)
+scale = Vector2(0.162109, 0.127441)
+texture = ExtResource("4_kqhkt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlutePickup"]
+position = Vector2(679.25, 443.75)
+shape = SubResource("RectangleShape2D_nt6mb")
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 783.0
+offset_top = 634.0
+offset_right = 906.0
+offset_bottom = 696.0
+text = "Back"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryPanel" type="TextureRect" parent="CanvasLayer"]
+offset_left = 42.0
+offset_top = 437.0
+offset_right = 790.0
+offset_bottom = 811.0
+texture = ExtResource("6_07cll")
+expand_mode = 1
+script = ExtResource("7_1xpvn")
+
+[node name="Slot1" type="TextureRect" parent="CanvasLayer/InventoryPanel"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 120.0
+offset_right = 291.0
+offset_bottom = 277.0
+texture = ExtResource("8_nt6mb")
+expand_mode = 1
+
+[node name="Slot2" type="TextureRect" parent="CanvasLayer/InventoryPanel"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 120.0
+offset_right = 451.0
+offset_bottom = 277.0
+texture = ExtResource("8_nt6mb")
+expand_mode = 1
+
+[node name="Slot3" type="TextureRect" parent="CanvasLayer/InventoryPanel"]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 122.0
+offset_right = 608.0
+offset_bottom = 279.0
+texture = ExtResource("8_nt6mb")
+expand_mode = 1
+
+[node name="Slot4" type="TextureRect" parent="CanvasLayer/InventoryPanel"]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 118.0
+offset_right = 766.0
+offset_bottom = 275.0
+texture = ExtResource("8_nt6mb")
+expand_mode = 1
+
+[node name="ContinueButton" type="Button" parent="."]
+offset_left = 1029.0
+offset_top = 634.0
+offset_right = 1161.0
+offset_bottom = 695.0
+text = "Continue"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]

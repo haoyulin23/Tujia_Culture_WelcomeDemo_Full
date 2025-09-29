@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cengtbbvxxqw3"]
+
+[ext_resource type="Texture2D" uid="uid://dgbc23j5pfqf" path="res://assets/item_flute.png" id="1_ympc5"]
+
+[node name="ItemFlute" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 383.0
+offset_top = 211.0
+offset_right = 864.0
+offset_bottom = 585.0
+texture = ExtResource("1_ympc5")
+expand_mode = 1

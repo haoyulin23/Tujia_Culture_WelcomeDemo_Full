@@ -1,0 +1,217 @@
+[gd_scene load_steps=11 format=3 uid="uid://er3gb0c3qehg"]
+
+[ext_resource type="Texture2D" uid="uid://dqghop5sx2xba" path="res://assets/ui/Background_dressup.png" id="1_1ktfl"]
+[ext_resource type="Script" uid="uid://bpofuo543mo8o" path="res://scripts/DressUp.gd" id="1_ef3yl"]
+[ext_resource type="Texture2D" uid="uid://dt3rvvn03wnod" path="res://assets/base/body_base.png" id="2_752dm"]
+[ext_resource type="Texture2D" uid="uid://evxw1jt3qxuq" path="res://assets/clothing/top_blue_embroidery.png" id="4_tiqtw"]
+[ext_resource type="Texture2D" uid="uid://cdvbqi2wgsyn4" path="res://assets/clothing/skirt_black_redtrim.png" id="5_fae72"]
+[ext_resource type="Texture2D" uid="uid://c4ndwue604jrl" path="res://assets/accessories/headpiece_silver_phoenix.png" id="6_fae72"]
+[ext_resource type="Texture2D" uid="uid://1y6s2hj1msjg" path="res://assets/accessories/necklace_embroidery.png" id="7_wbc2h"]
+[ext_resource type="Texture2D" uid="uid://nuuaxu5aagr5" path="res://assets/accessories/earring_multicolor_tassel.png" id="8_1ktfl"]
+[ext_resource type="Texture2D" uid="uid://egvdoheftydh" path="res://assets/accessories/bracelet_silver.png" id="9_752dm"]
+[ext_resource type="Texture2D" uid="uid://ctyik1mnctpeq" path="res://assets/ui/info_panel.png" id="10_ihlim"]
+
+[node name="DressUp" type="Node2D"]
+script = ExtResource("1_ef3yl")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(648, 367)
+scale = Vector2(0.834635, 0.714844)
+texture = ExtResource("1_1ktfl")
+
+[node name="EarringLayer" type="Sprite2D" parent="."]
+position = Vector2(619, 363)
+scale = Vector2(0.127686, 0.0968018)
+
+[node name="EarringLayer2" type="Sprite2D" parent="."]
+position = Vector2(471, 359)
+scale = Vector2(0.127686, 0.0968018)
+
+[node name="CharacterBase" type="Sprite2D" parent="."]
+position = Vector2(548, 464)
+scale = Vector2(0.578857, 0.545898)
+texture = ExtResource("2_752dm")
+
+[node name="BraceletLayer" type="Sprite2D" parent="."]
+position = Vector2(629, 523)
+scale = Vector2(0.0849609, 0.109253)
+
+[node name="SkirtLayer" type="Sprite2D" parent="."]
+position = Vector2(542, 580)
+scale = Vector2(0.23291, 0.240234)
+
+[node name="TopLayer" type="Sprite2D" parent="."]
+position = Vector2(544, 474)
+scale = Vector2(0.258789, 0.248047)
+
+[node name="HeadpieceLayer" type="Sprite2D" parent="."]
+position = Vector2(538, 220)
+scale = Vector2(0.272949, 0.166992)
+
+[node name="NecklaceLayer" type="Sprite2D" parent="."]
+position = Vector2(544, 420)
+scale = Vector2(0.139343, 0.108215)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+alignment = 1
+
+[node name="LeftPanel" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BtnTop" type="Button" parent="VBoxContainer/LeftPanel"]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 19.0
+offset_right = 416.0
+offset_bottom = 27.0
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/LeftPanel/BtnTop"]
+layout_mode = 0
+offset_left = -332.0
+offset_top = 151.0
+offset_right = -151.0
+offset_bottom = 378.0
+texture = ExtResource("4_tiqtw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnSkirt" type="Button" parent="VBoxContainer/LeftPanel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/LeftPanel/BtnSkirt"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 37.0
+offset_right = 250.0
+offset_bottom = 196.0
+texture = ExtResource("5_fae72")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnHeadpiece" type="Button" parent="VBoxContainer/LeftPanel"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 42.0
+offset_right = 98.0
+offset_bottom = 50.0
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/LeftPanel/BtnHeadpiece"]
+clip_contents = true
+layout_mode = 0
+offset_left = -14.0
+offset_top = 490.0
+offset_right = 177.0
+offset_bottom = 662.0
+texture = ExtResource("6_fae72")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnNecklace" type="Button" parent="VBoxContainer/LeftPanel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/LeftPanel/BtnNecklace"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 327.0
+offset_right = 255.0
+offset_bottom = 538.0
+texture = ExtResource("7_wbc2h")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RightPanel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BtnEarring" type="Button" parent="RightPanel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="TextureRect" type="TextureRect" parent="RightPanel/BtnEarring"]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 548.0
+offset_right = 918.0
+offset_bottom = 723.0
+texture = ExtResource("8_1ktfl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnBracelet" type="Button" parent="RightPanel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="TextureRect" type="TextureRect" parent="RightPanel/BtnBracelet"]
+layout_mode = 0
+offset_left = 751.0
+offset_top = 423.0
+offset_right = 912.0
+offset_bottom = 560.0
+texture = ExtResource("9_752dm")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoPanel" type="Panel" parent="."]
+offset_left = 935.0
+offset_top = 71.0
+offset_right = 1244.0
+offset_bottom = 448.0
+
+[node name="Background" type="TextureRect" parent="InfoPanel"]
+layout_mode = 0
+offset_left = -80.0
+offset_top = -53.0
+offset_right = 395.0
+offset_bottom = 422.0
+texture = ExtResource("10_ihlim")
+expand_mode = 1
+
+[node name="ItemImage" type="TextureRect" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 121.0
+offset_right = 216.0
+offset_bottom = 252.0
+expand_mode = 2
+
+[node name="ItemTitle" type="Label" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 49.0
+offset_right = 239.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+autowrap_mode = 3
+
+[node name="ItemDescription" type="Label" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 269.0
+offset_right = 297.0
+offset_bottom = 415.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 1041.0
+offset_top = 643.0
+offset_right = 1140.0
+offset_bottom = 690.0
+text = "Back"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

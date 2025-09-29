@@ -1,0 +1,125 @@
+[gd_scene load_steps=12 format=3 uid="uid://dvh7phutnggbs"]
+
+[ext_resource type="Texture2D" uid="uid://dfu6kuveldhhn" path="res://assets/interactive_background.png" id="1_p524m"]
+[ext_resource type="Texture2D" uid="uid://d12wp8dmnbguo" path="res://assets/jianzi.png" id="2_wngyo"]
+[ext_resource type="Texture2D" uid="uid://qatnd38lgowb" path="res://assets/player/kick_idle.png" id="2_ycog6"]
+[ext_resource type="Texture2D" uid="uid://dlogjwuu2mhgj" path="res://assets/player/kick_action.png" id="3_qat26"]
+[ext_resource type="Texture2D" uid="uid://eg4vmk7c3r4y" path="res://assets/player/kick_finish.png" id="4_ljygj"]
+[ext_resource type="Script" uid="uid://5d7h167dupl" path="res://scripts/Player.gd" id="5_qat26"]
+[ext_resource type="Script" uid="uid://wq3yd83uwq4a" path="res://scripts/Jianzi.gd" id="6_ljygj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0o0u4"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("2_ycog6")
+}, {
+"duration": 1.5,
+"texture": ExtResource("3_qat26")
+}, {
+"duration": 1.5,
+"texture": ExtResource("4_ljygj")
+}],
+"loop": false,
+"name": &"kick",
+"speed": 8.0
+}]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0o0u4"]
+friction = 0.3
+bounce = 0.7
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2woa"]
+size = Vector2(7.275, 7.45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qat26"]
+size = Vector2(138.2, 8.5)
+
+[node name="KickJianzi" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(642, 362)
+scale = Vector2(0.834635, 0.720703)
+texture = ExtResource("1_p524m")
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+position = Vector2(938, 373)
+scale = Vector2(0.32959, 0.299805)
+sprite_frames = SubResource("SpriteFrames_0o0u4")
+animation = &"kick"
+frame = 1
+frame_progress = 0.824497
+script = ExtResource("5_qat26")
+jianzi_node = NodePath("../Jianzi")
+
+[node name="Jianzi" type="RigidBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_0o0u4")
+gravity_scale = 1.2
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp = 0.5
+script = ExtResource("6_ljygj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jianzi"]
+position = Vector2(720, 243)
+scale = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_x2woa")
+
+[node name="Sprite2D" type="Sprite2D" parent="Jianzi"]
+position = Vector2(728, 252)
+scale = Vector2(0.196289, 0.173828)
+texture = ExtResource("2_wngyo")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(659, 659)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_qat26")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score:"
+
+[node name="RestartButton" type="Button" parent="UI"]
+offset_left = 540.0
+offset_top = 641.0
+offset_right = 671.0
+offset_bottom = 704.0
+text = "Restart"
+
+[node name="Label" type="Label" parent="UI"]
+offset_left = 45.0
+offset_top = 142.0
+offset_right = 462.0
+offset_bottom = 235.0
+theme_override_font_sizes/font_size = 32
+text = "Press Space or Click to Kick"
+autowrap_mode = 3
+
+[node name="Title" type="Label" parent="UI"]
+offset_left = 460.0
+offset_top = 11.0
+offset_right = 767.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 64
+text = "Kick Jianzi"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 79.0
+offset_top = 641.0
+offset_right = 205.0
+offset_bottom = 702.0
+text = "Back"
+
+[connection signal="animation_finished" from="Player" to="Player" method="_on_AnimatedSprite2D_animation_finished"]
+[connection signal="pressed" from="UI/RestartButton" to="Player" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="Button" to="Player" method="_on_BackButton_pressed"]
