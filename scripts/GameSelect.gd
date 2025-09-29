@@ -10,7 +10,7 @@ func _ready():
 	fivestone_button.pressed.connect(_on_FiveStone_pressed)
 
 func _on_KickJianzi_pressed():
-	get_tree().change_scene_to_file("res://scenes/Kickjianzi.tscn")
+	get_tree().change_scene_to_file("res://scenes/KickJianzi.tscn")
 
 func _on_QuizGame_pressed():
 	get_tree().change_scene_to_file("res://scenes/QuizGame.tscn")
