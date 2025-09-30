@@ -35,7 +35,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ljygj"]
-size = Vector2(421.736, 887.244)
+size = Vector2(655.359, 997.315)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0o0u4"]
 friction = 0.3
@@ -54,40 +54,43 @@ position = Vector2(642, 362)
 scale = Vector2(0.834635, 0.720703)
 texture = ExtResource("1_p524m")
 
-[node name="Player" type="AnimatedSprite2D" parent="."]
-position = Vector2(938, 373)
+[node name="Player" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("collisionShape")]
+position = Vector2(938, 372)
 scale = Vector2(0.32959, 0.299805)
 sprite_frames = SubResource("SpriteFrames_0o0u4")
 animation = &"idle"
 script = ExtResource("5_qat26")
+collisionShape = NodePath("Area2D/CollisionShape2D")
 
 [node name="Area2D" type="Area2D" parent="Player"]
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
-position = Vector2(-229.073, 300.195)
+position = Vector2(345.885, 311.869)
 shape = SubResource("RectangleShape2D_ljygj")
 
-[node name="Jianzi" type="RigidBody2D" parent="."]
-position = Vector2(0, 1)
+[node name="Jianzi" type="RigidBody2D" parent="." node_paths=PackedStringArray("scoreLabel")]
+position = Vector2(693, 178)
 physics_material_override = SubResource("PhysicsMaterial_0o0u4")
 gravity_scale = 1.2
 contact_monitor = true
 max_contacts_reported = 1
 linear_damp = 0.5
 script = ExtResource("6_ljygj")
+scoreLabel = NodePath("../UI/ScoreLabel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jianzi"]
-position = Vector2(720, 243)
 scale = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_x2woa")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Jianzi/CollisionShape2D"]
+scale = Vector2(0.375, 0.375)
+
 [node name="Sprite2D" type="Sprite2D" parent="Jianzi"]
-position = Vector2(728, 252)
 scale = Vector2(0.196289, 0.173828)
 texture = ExtResource("2_wngyo")
 
-[node name="Floor" type="StaticBody2D" parent="."]
+[node name="Floor" type="StaticBody2D" parent="." groups=["ground"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2(659, 659)
@@ -97,9 +100,18 @@ shape = SubResource("RectangleShape2D_qat26")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="ScoreLabel" type="Label" parent="UI"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Score:"
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -44.0
+offset_right = -9.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Score: 0"
 
 [node name="RestartButton" type="Button" parent="UI"]
 offset_left = 540.0
@@ -135,5 +147,7 @@ text = "Back"
 [connection signal="animation_finished" from="Player" to="Player" method="_on_AnimatedSprite2D_animation_finished"]
 [connection signal="body_entered" from="Player/Area2D" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Player/Area2D" to="Player" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Jianzi" to="Jianzi" method="_on_body_entered"]
+[connection signal="screen_exited" from="Jianzi/CollisionShape2D/VisibleOnScreenNotifier2D" to="Jianzi" method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="pressed" from="UI/RestartButton" to="Player" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="Button" to="Player" method="_on_BackButton_pressed"]
