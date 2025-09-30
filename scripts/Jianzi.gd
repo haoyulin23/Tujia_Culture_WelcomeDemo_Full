@@ -1,47 +1,32 @@
 extends RigidBody2D
 
-@export var reset_delay := 2.0
-@export var reset_height := 200
-@export var initial_x_range := Vector2(300, 900)
+var _need_reset := false
+var _reset_pos := Vector2.ZERO
+var score = 0
 
-var reset_timer: Timer
+@export var scoreLabel:Label
 
-func _ready():
-	reset_timer = Timer.new()
-	reset_timer.wait_time = reset_delay
-	reset_timer.one_shot = true
-	reset_timer.connect("timeout", Callable(self, "_on_reset_timer_timeout"))
-	add_child(reset_timer)
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	var screen_width: float = get_viewport_rect().size.x
+	var random_x: float = randf_range(0, screen_width)
+	_need_reset = true
+	_reset_pos = Vector2(random_x, -600)
 
-func _physics_process(delta):
-	if position.y > 650 and reset_timer.is_stopped():
-		visible = false
-		reset_timer.start()
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if _need_reset:
+		state.transform.origin = _reset_pos
+		state.linear_velocity = Vector2.ZERO
+		state.angular_velocity = 0
+		_need_reset = false
 
-func bounce():
-	linear_velocity = Vector2(randf_range(-50, 50), -600)
+func  addScore():
+	updateScore(score+1)
 
-func _on_reset_timer_timeout():
-	var x = randf_range(initial_x_range.x, initial_x_range.y)
-	position = Vector2(x, -reset_height)
-	linear_velocity = Vector2(0, 50)
-	angular_velocity = 0
-	visible = true
-	sleeping = false
+func updateScore(newScore: int):
+	score = newScore
+	scoreLabel.text = "score: "+str(newScore)
 
-func reset_position():
-	# 设置随机初始位置（上方）
-	position = Vector2(randi_range(initial_x_range.x, initial_x_range.y), -100)
 
-	# 重置速度
-	linear_velocity = Vector2.ZERO
-	angular_velocity = 0
-
-	# 唤醒物理
-	sleeping = false  # 必须先唤醒，才能应用力
-	visible = true
-
-	# 手动施加一个微弱向下的力
-	apply_central_impulse(Vector2(0, 50))  # X轴不动，Y轴给一个“向下”的推力
-	
-	print("毽子已重置，当前位置：", position, ", 当前速度：", linear_velocity)
+func _on_body_entered(body: Node) -> void:
+	if body.is_in_group("ground"): # 给地面加到 "ground" 组
+		updateScore(0)
