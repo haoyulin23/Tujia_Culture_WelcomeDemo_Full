@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://8f4u1ghhkyjq"]
 
 [ext_resource type="Script" uid="uid://b40ihxla0dfdv" path="res://scripts/module_select.gd" id="1_d3tdb"]
-[ext_resource type="Texture2D" uid="uid://dfu6kuveldhhn" path="res://assets/interactive_background.png" id="2_b60wk"]
+[ext_resource type="Texture2D" uid="uid://bge4pbno7u01w" path="res://assets/background.png" id="2_b60wk"]
 
 [node name="ModuleSelect" type="Control"]
 layout_mode = 3
@@ -26,9 +26,9 @@ expand_mode = 1
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 433.0
-offset_top = 33.0
-offset_right = 797.0
-offset_bottom = 93.0
+offset_top = 73.0
+offset_right = 824.0
+offset_bottom = 133.0
 theme_override_font_sizes/font_size = 32
 text = "Please Select a Module"
 
