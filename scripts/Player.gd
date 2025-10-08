@@ -3,14 +3,26 @@ extends AnimatedSprite2D
 @export var move_speed := 300
 @export var min_x := 100  # 左边界限制
 @export var max_x := 1000  # 右边界限制
-
 var jianzi: RigidBody2D
 @export var collisionShape : CollisionShape2D
-var px = 0;
+var px: float = 0;
+
+var initPosition : Vector2
+var initFlipH :bool
 
 func _ready():
 	play("idle")
-	px = collisionShape.position.x;
+	px = collisionShape.position.x
+	initPosition = position
+	initFlipH = flip_h
+	EventBus.reset_kick_jianzi.connect(reset)
+
+func reset():
+	position = initPosition
+	flip_h = initFlipH
+	var jianziNode: Node = get_node("/root/KickJianzi/Jianzi")
+	if jianziNode:
+		jianziNode.reset_position_and_score() 
 
 func _process(delta):
 	var moved
@@ -40,9 +52,7 @@ func _on_AnimatedSprite2D_animation_finished():
 		play("idle")
 
 func _on_RestartButton_pressed():
-	var jianziNode: Node = get_node("/root/KickJianzi/Jianzi")
-	if jianziNode:
-		jianziNode.reset_position() 
+	EventBus.call_reset()
 
 
 func _on_BackButton_pressed():
@@ -50,12 +60,10 @@ func _on_BackButton_pressed():
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("enter")
 	if body is RigidBody2D:
 		jianzi = body;
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	print("exited")
 	if body is RigidBody2D:
 		jianzi = null;
