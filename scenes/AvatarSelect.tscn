@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlwaxb5hqq3fp"]
 
 [ext_resource type="Script" uid="uid://cdxrglbbhj6km" path="res://scripts/avatar_select.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://dfu6kuveldhhn" path="res://assets/interactive_background.png" id="2_50v6p"]
+[ext_resource type="Texture2D" uid="uid://bge4pbno7u01w" path="res://assets/background.png" id="2_50v6p"]
 
 [node name="AvatarSelect" type="Control"]
 layout_mode = 3

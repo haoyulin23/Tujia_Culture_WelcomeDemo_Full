@@ -1,5 +1,5 @@
 extends Node
-@onready var avatar_icon: TextureRect = $AvatarIcon
+@export var avatar_icon: TextureRect
 
 func _ready():
 	var tex: Texture2D = load(Global.selected_avatar)

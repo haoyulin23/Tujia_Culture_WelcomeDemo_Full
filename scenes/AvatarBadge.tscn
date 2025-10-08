@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://7sfjgvnm84k"]
 
 [ext_resource type="Shader" uid="uid://cyui4ob0u6x06" path="res://shaders/circle_mask.gdshader" id="1_ka3r7"]
-[ext_resource type="Script" uid="uid://ch7v1dcmfpi8u" path="res://scripts/AvatarBadge.gd" id="1_x6ikd"]
+[ext_resource type="Script" path="res://scripts/AvatarBadge.gd" id="1_x6ikd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk5b7"]
 bg_color = Color(0.999738, 0.310987, 0.459606, 0.227451)
@@ -11,8 +11,6 @@ corner_radius_bottom_right = 36
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x6ikd"]
 shader = ExtResource("1_ka3r7")
-shader_parameter/radius = 0.48
-shader_parameter/edge_softness = 0.02
 
 [node name="AvatarBadge" type="Control"]
 custom_minimum_size = Vector2(72, 72)

@@ -28,6 +28,10 @@ window/size/viewport_height=720
 
 version_control/autoload_on_startup=true
 
+[gui]
+
+theme/custom_font="uid://ckoyfi7o13spr"
+
 [input]
 
 ui_accept={
