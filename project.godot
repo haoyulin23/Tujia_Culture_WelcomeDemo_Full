@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.4")
 
 Global="*res://scripts/Global.gd"
 InventoryPanel="*res://scripts/Inventory_panel.gd"
+EventBus="*res://scripts/event_bus.gd"
 
 [display]
 
